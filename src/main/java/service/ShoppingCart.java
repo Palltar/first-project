@@ -15,17 +15,17 @@ public class ShoppingCart {
     public double getTotalPrice() {
         double totalPrice = 0;
         for (Food food : elements) {
-            totalPrice = totalPrice + food.getTotalPrice();
+            totalPrice = totalPrice + food.getPrice()* food.getAmount();
         }
         return totalPrice;
     }
 
-    //Тут стандартная ошибка на деление foat, всё переделать под  BigDecimal.
+
     public double getTotalPriceWithDiscount() {
         double totalPriceWithDiscount = 0;
         for (Food food : elements) {
-            totalPriceWithDiscount = totalPriceWithDiscount + food.getTotalPrice()
-                    -food.getTotalPrice()*food.getDiscount()/100;
+            totalPriceWithDiscount = totalPriceWithDiscount + food.getPrice()* food.getAmount()
+                    -food.getPrice()* food.getAmount()*food.getDiscount()/100;
         }
         return totalPriceWithDiscount;
     }
@@ -34,7 +34,7 @@ public class ShoppingCart {
         double totalPriceIsVegetarian = 0;
         for (Food food : elements) {
             if(food.isVegetarian()){
-                if (food.getDiscount()==0){totalPriceIsVegetarian = totalPriceIsVegetarian + food.getTotalPrice();}
+                totalPriceIsVegetarian = totalPriceIsVegetarian + food.getPrice()* food.getAmount();
             }
 
         }
